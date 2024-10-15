@@ -524,6 +524,8 @@ static void hdm_decoder_commit(CXLType3Dev *ct3d, int which)
     ctrl = FIELD_DP32(ctrl, CXL_HDM_DECODER0_CTRL, COMMITTED, 1);
 
     stl_le_p(cache_mem + R_CXL_HDM_DECODER0_CTRL + which * hdm_inc, ctrl);
+
+    cfmws_update_non_interleaved();
 }
 
 static void hdm_decoder_uncommit(CXLType3Dev *ct3d, int which)
